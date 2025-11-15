@@ -16,9 +16,6 @@
     rel="stylesheet"
   />
   <style>
-    :root {
-      color-scheme: dark;
-    }
     body {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
         sans-serif;
@@ -26,18 +23,24 @@
     html {
       scroll-behavior: smooth;
     }
-    .glass {
-      background: rgba(15, 23, 42, 0.88);
-      backdrop-filter: blur(18px);
-    }
     .section-max {
       max-width: 1120px;
     }
+    .shadow-soft {
+      box-shadow:
+        0 10px 20px rgba(15, 23, 42, 0.08),
+        0 4px 6px rgba(15, 23, 42, 0.04);
+    }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100">
+<body class="bg-slate-50 text-slate-900">
+  <!-- Facebook SDK (for Recent Work feed) -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"></script>
+
   <!-- Top strip -->
-  <div class="bg-emerald-500 text-slate-950 text-sm">
+  <div class="bg-emerald-700 text-emerald-50 text-sm">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
       <p class="font-medium">
         Servicing all of Missouri &amp; Southern Illinois
@@ -46,7 +49,7 @@
         <a href="tel:13144373203" class="font-semibold hover:underline">
           Call: (314) 437-3203
         </a>
-        <span class="hidden sm:inline text-slate-900/80">
+        <span class="hidden sm:inline text-emerald-100/80">
           Email: forestrystl@gmail.com
         </span>
       </div>
@@ -54,16 +57,16 @@
   </div>
 
   <!-- Navbar -->
-  <header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 glass">
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
       <a href="#top" class="flex items-center gap-3">
         <div
-          class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/40"
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 ring-2 ring-emerald-600/30"
         >
           <!-- simple tree icon -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-emerald-400"
+            class="h-5 w-5 text-emerald-700"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -76,7 +79,7 @@
           </svg>
         </div>
         <div>
-          <div class="text-xs font-semibold tracking-[0.16em] text-emerald-400">
+          <div class="text-[10px] font-semibold tracking-[0.16em] text-emerald-700">
             MIDWEST
           </div>
           <div class="text-sm font-semibold leading-tight">
@@ -86,19 +89,19 @@
       </a>
 
       <nav class="hidden items-center gap-6 text-sm font-medium md:flex">
-        <a href="#about" class="hover:text-emerald-400">About</a>
-        <a href="#services" class="hover:text-emerald-400">Services</a>
-        <a href="#equipment" class="hover:text-emerald-400">Equipment</a>
-        <a href="#gallery" class="hover:text-emerald-400">Recent Work</a>
-        <a href="#financing" class="hover:text-emerald-400">Financing</a>
-        <a href="#service-area" class="hover:text-emerald-400">Service Area</a>
-        <a href="#contact" class="hover:text-emerald-400">Contact</a>
+        <a href="#about" class="hover:text-emerald-700">About</a>
+        <a href="#services" class="hover:text-emerald-700">Services</a>
+        <a href="#equipment" class="hover:text-emerald-700">Equipment</a>
+        <a href="#gallery" class="hover:text-emerald-700">Recent Work</a>
+        <a href="#financing" class="hover:text-emerald-700">Financing</a>
+        <a href="#service-area" class="hover:text-emerald-700">Service Area</a>
+        <a href="#contact" class="hover:text-emerald-700">Contact</a>
       </nav>
 
       <div class="flex items-center gap-2">
         <a
           href="tel:13144373203"
-          class="hidden items-center gap-2 rounded-full border border-emerald-500/40 px-3 py-2 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/10 sm:flex"
+          class="hidden items-center gap-2 rounded-full border border-emerald-600/40 px-3 py-2 text-xs font-semibold text-emerald-700 hover:bg-emerald-50 sm:flex"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +120,7 @@
         </a>
         <a
           href="#contact"
-          class="hidden rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 hover:bg-emerald-400 md:inline-block"
+          class="hidden rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold text-white shadow-soft hover:bg-emerald-600 md:inline-block"
         >
           Request a quote
         </a>
@@ -125,12 +128,12 @@
         <!-- mobile menu button -->
         <button
           id="mobile-nav-toggle"
-          class="inline-flex items-center justify-center rounded-full border border-slate-700 p-2 md:hidden"
+          class="inline-flex items-center justify-center rounded-full border border-slate-300 p-2 md:hidden"
           aria-label="Toggle navigation"
         >
           <svg
             id="mobile-nav-icon-open"
-          xmlns="http://www.w3.org/2000/svg"
+            xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
             viewBox="0 0 24 24"
             fill="none"
@@ -157,16 +160,16 @@
     <!-- mobile dropdown -->
     <nav
       id="mobile-nav"
-      class="hidden border-t border-slate-800 bg-slate-950/95 md:hidden"
+      class="hidden border-t border-slate-200 bg-white md:hidden"
     >
       <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 text-sm">
-        <a href="#about" class="py-1 hover:text-emerald-400">About</a>
-        <a href="#services" class="py-1 hover:text-emerald-400">Services</a>
-        <a href="#equipment" class="py-1 hover:text-emerald-400">Equipment</a>
-        <a href="#gallery" class="py-1 hover:text-emerald-400">Recent Work</a>
-        <a href="#financing" class="py-1 hover:text-emerald-400">Financing</a>
-        <a href="#service-area" class="py-1 hover:text-emerald-400">Service Area</a>
-        <a href="#contact" class="py-1 hover:text-emerald-400">Contact</a>
+        <a href="#about" class="py-1 hover:text-emerald-700">About</a>
+        <a href="#services" class="py-1 hover:text-emerald-700">Services</a>
+        <a href="#equipment" class="py-1 hover:text-emerald-700">Equipment</a>
+        <a href="#gallery" class="py-1 hover:text-emerald-700">Recent Work</a>
+        <a href="#financing" class="py-1 hover:text-emerald-700">Financing</a>
+        <a href="#service-area" class="py-1 hover:text-emerald-700">Service Area</a>
+        <a href="#contact" class="py-1 hover:text-emerald-700">Contact</a>
       </div>
     </nav>
   </header>
@@ -174,34 +177,33 @@
   <!-- Hero -->
   <main id="top">
     <section
-      class="relative overflow-hidden border-b border-slate-800 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900/80"
+      class="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-emerald-50 via-white to-slate-50"
     >
-      <!-- background overlay -->
       <div
-        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(34,197,94,0.14),_transparent_55%)]"
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(148,163,184,0.2),_transparent_55%)] opacity-70"
       ></div>
 
       <div
-        class="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-20 pt-12 md:flex-row md:items-center md:gap-16 md:pt-16"
+        class="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-16 pt-10 md:flex-row md:items-center md:gap-16 md:pt-16"
       >
         <!-- Text -->
         <div class="md:w-1/2">
           <div
-            class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-slate-950/60 px-3 py-1 text-xs text-emerald-200"
+            class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/80 px-3 py-1 text-xs text-emerald-800 shadow-sm"
           >
             <span
-              class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(34,197,94,0.35)]"
+              class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(34,197,94,0.25)]"
             ></span>
             Brush control &amp; land clearing done right.
           </div>
 
           <h1
-            class="text-balance text-3xl font-extrabold tracking-tight text-slate-50 sm:text-4xl lg:text-5xl"
+            class="text-balance text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
           >
             Turn overgrown acres into usable, beautiful land.
           </h1>
 
-          <p class="mt-4 text-sm leading-relaxed text-slate-300 sm:text-base">
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
             Midwest Forestry Mulching &amp; Land Clearing is your one-call solution for
             forestry mulching, land clearing, stump grinding, and brush control across
             Missouri and Southern Illinois. Based in Defiance, MO and trusted by
@@ -209,22 +211,22 @@
           </p>
 
           <dl
-            class="mt-6 grid gap-4 text-sm text-slate-200 sm:grid-cols-3 sm:text-xs md:text-sm"
+            class="mt-6 grid gap-4 text-sm text-slate-800 sm:grid-cols-3 sm:text-xs md:text-sm"
           >
             <div>
-              <dt class="text-slate-400">Service region</dt>
+              <dt class="text-slate-500">Service region</dt>
               <dd class="font-semibold">
                 Missouri &amp; Southern Illinois
               </dd>
             </div>
             <div>
-              <dt class="text-slate-400">Contact</dt>
+              <dt class="text-slate-500">Contact</dt>
               <dd class="font-semibold">
                 (314) 437-3203
               </dd>
             </div>
             <div>
-              <dt class="text-slate-400">Hours</dt>
+              <dt class="text-slate-500">Hours</dt>
               <dd class="font-semibold">
                 Mon–Fri · 6:30 am–5:00 pm
               </dd>
@@ -234,13 +236,13 @@
           <div class="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#contact"
-              class="inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 hover:bg-emerald-400"
+              class="inline-flex items-center justify-center rounded-full bg-emerald-700 px-6 py-2.5 text-sm font-semibold text-white shadow-soft hover:bg-emerald-600"
             >
               Get a free quote
             </a>
             <a
               href="tel:13144373203"
-              class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200"
+              class="inline-flex items-center gap-2 text-sm font-medium text-emerald-800 hover:text-emerald-700"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -259,10 +261,10 @@
             </a>
           </div>
 
-          <div class="mt-6 flex flex-wrap gap-6 text-xs text-slate-400">
+          <div class="mt-6 flex flex-wrap gap-6 text-xs text-slate-500">
             <div class="flex items-center gap-2">
               <span
-                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400"
+                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"
               >
                 ✓
               </span>
@@ -270,7 +272,7 @@
             </div>
             <div class="flex items-center gap-2">
               <span
-                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400"
+                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"
               >
                 ✓
               </span>
@@ -278,7 +280,7 @@
             </div>
             <div class="flex items-center gap-2">
               <span
-                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400"
+                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"
               >
                 ✓
               </span>
@@ -290,18 +292,15 @@
         <!-- Hero visual -->
         <div class="md:w-1/2">
           <div
-            class="relative rounded-3xl border border-emerald-500/20 bg-slate-900/70 p-4 shadow-2xl shadow-emerald-500/15"
+            class="relative rounded-3xl border border-emerald-100 bg-white/80 p-4 shadow-soft"
           >
-            <div
-              class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-900 via-slate-900 to-slate-950"
-            >
-              <!-- Placeholder “before/after” framing, you can swap for real photos later -->
+            <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-200">
               <div class="flex h-full w-full flex-col sm:flex-row">
                 <div
-                  class="relative flex-1 border-b border-slate-800/70 bg-[url('https://images.pexels.com/photos/1000058/pexels-photo-1000058.jpeg?auto=compress&cs=tinysrgb&w=1200')] bg-cover bg-center sm:border-b-0 sm:border-r"
+                  class="relative flex-1 border-b border-slate-200 bg-[url('https://images.pexels.com/photos/1000058/pexels-photo-1000058.jpeg?auto=compress&cs=tinysrgb&w=1200')] bg-cover bg-center sm:border-b-0 sm:border-r"
                 >
                   <div
-                    class="absolute left-3 top-3 rounded-full bg-slate-950/75 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-slate-200"
+                    class="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700 shadow-sm"
                   >
                     Before
                   </div>
@@ -310,7 +309,7 @@
                   class="relative flex-1 bg-[url('https://images.pexels.com/photos/167684/pexels-photo-167684.jpeg?auto=compress&cs=tinysrgb&w=1200')] bg-cover bg-center"
                 >
                   <div
-                    class="absolute right-3 top-3 rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-slate-950"
+                    class="absolute right-3 top-3 rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-sm"
                   >
                     After
                   </div>
@@ -318,10 +317,10 @@
               </div>
             </div>
 
-            <div class="mt-4 grid gap-3 text-xs text-slate-300 sm:grid-cols-3">
+            <div class="mt-4 grid gap-3 text-xs text-slate-700 sm:grid-cols-3">
               <div class="flex items-start gap-2">
                 <span
-                  class="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/15 text-[10px] text-emerald-400"
+                  class="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>
@@ -331,17 +330,16 @@
               </div>
               <div class="flex items-start gap-2">
                 <span
-                  class="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/15 text-[10px] text-emerald-400"
+                  class="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>
-                  State-of-the-art mulching heads sized for residential, farm &amp; large
-                  tracts.
+                  Mulching heads sized for residential, farm &amp; large acreage work.
                 </span>
               </div>
               <div class="flex items-start gap-2">
                 <span
-                  class="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/15 text-[10px] text-emerald-400"
+                  class="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>
@@ -356,77 +354,77 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="border-b border-slate-800 bg-slate-950/60">
+    <section id="about" class="border-b border-slate-200 bg-white">
       <div class="mx-auto section-max px-4 py-16">
-        <div class="grid gap-8 md:grid-cols-[1.2fr,1fr] md:items-center">
+        <div class="grid gap-10 md:grid-cols-[1.2fr,1fr] md:items-center">
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               About Midwest Forestry Mulching &amp; Land Clearing
             </h2>
-            <p class="mt-4 text-sm leading-relaxed text-slate-300">
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">
               We’re a professional forestry mulching and land clearing company based in
               Defiance, Missouri, serving landowners, farms, and businesses throughout
               Missouri and Southern Illinois. Our crew helps you turn rough, overgrown
               ground into clean, usable land with as little disturbance as possible.
             </p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-300">
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
               Whether you’re opening up a homesite, reclaiming pasture, cleaning
               right-of-ways, or improving your hunting property, we focus on doing the job
-              once and doing it right—on time, on budget, and with communication from the
-              first call to the final walk-through.
+              once and doing it right—on time, on budget, and with clear communication
+              from the first call to the final walk-through.
             </p>
 
             <dl
-              class="mt-6 grid gap-4 text-sm text-slate-200 sm:grid-cols-3 sm:text-xs md:text-sm"
+              class="mt-6 grid gap-4 text-sm text-slate-900 sm:grid-cols-3 sm:text-xs md:text-sm"
             >
               <div>
-                <dt class="text-slate-400">Location</dt>
+                <dt class="text-slate-500">Location</dt>
                 <dd class="font-semibold">Defiance, MO</dd>
               </div>
               <div>
-                <dt class="text-slate-400">Email</dt>
+                <dt class="text-slate-500">Email</dt>
                 <dd class="font-semibold break-all">
                   forestrystl@gmail.com
                 </dd>
               </div>
               <div>
-                <dt class="text-slate-400">Phone</dt>
+                <dt class="text-slate-500">Phone</dt>
                 <dd class="font-semibold">(314) 437-3203</dd>
               </div>
             </dl>
           </div>
 
           <div
-            class="rounded-2xl border border-emerald-500/20 bg-slate-900/70 p-5 text-sm text-slate-200"
+            class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-800 shadow-sm"
           >
-            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-400">
+            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
               Why people choose us
             </h3>
             <ul class="mt-4 space-y-3 text-sm">
               <li class="flex items-start gap-2">
                 <span
-                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] text-emerald-300"
+                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>Owner-operated with hands-on attention to each project.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span
-                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] text-emerald-300"
+                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
-                <span>State-of-the-art mulching and land-clearing equipment.</span>
+                <span>Professional equipment built for forestry work.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span
-                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] text-emerald-300"
+                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>Transparent quotes and realistic timelines—no surprises.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span
-                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] text-emerald-300"
+                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>We treat your property like it’s our own.</span>
@@ -438,21 +436,21 @@
     </section>
 
     <!-- Services -->
-    <section id="services" class="border-b border-slate-800 bg-slate-950">
+    <section id="services" class="border-b border-slate-200 bg-slate-50">
       <div class="mx-auto section-max px-4 py-16">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               Land services built around your property.
             </h2>
-            <p class="mt-3 max-w-2xl text-sm text-slate-300">
+            <p class="mt-3 max-w-2xl text-sm text-slate-600">
               From a single overgrown lot to multi-acre tracts, we tailor each job to
               your land, your goals, and your budget.
             </p>
           </div>
           <a
             href="#contact"
-            class="text-xs font-semibold text-emerald-300 hover:text-emerald-200"
+            class="text-xs font-semibold text-emerald-700 hover:text-emerald-600"
           >
             Not sure what you need? Ask for a walk-through →
           </a>
@@ -461,16 +459,16 @@
         <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <!-- Forestry mulching -->
           <article
-            class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+            class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
           >
-            <h3 class="text-sm font-semibold text-slate-50">
+            <h3 class="text-sm font-semibold text-slate-900">
               Forestry Mulching
             </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300">
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">
               Grind brush, saplings, and undergrowth into a clean mulch layer in a single
               pass—no piles, no burning, and minimal soil disturbance.
             </p>
-            <ul class="mt-3 space-y-1.5 text-xs text-slate-400">
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
               <li>• Fence lines &amp; property lines</li>
               <li>• Home sites &amp; building pads</li>
               <li>• Food plots &amp; hunting access</li>
@@ -479,15 +477,15 @@
 
           <!-- Land clearing -->
           <article
-            class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+            class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
           >
-            <h3 class="text-sm font-semibold text-slate-50">Land Clearing</h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300">
+            <h3 class="text-sm font-semibold text-slate-900">Land Clearing</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">
               Complete clearing for new construction, additions, utilities, and access
               roads while protecting the ground and neighboring trees as much as
               possible.
             </p>
-            <ul class="mt-3 space-y-1.5 text-xs text-slate-400">
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
               <li>• Homes, barns &amp; outbuildings</li>
               <li>• Driveways &amp; easements</li>
               <li>• Right-of-way clearing</li>
@@ -496,16 +494,16 @@
 
           <!-- Field reclaim / brush hogging -->
           <article
-            class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+            class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
           >
-            <h3 class="text-sm font-semibold text-slate-50">
+            <h3 class="text-sm font-semibold text-slate-900">
               Field Reclaim &amp; Brush Control
             </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300">
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">
               Turn shoulder-high brush and saplings back into usable pasture, fields, or
               yard space. Great for long-neglected properties.
             </p>
-            <ul class="mt-3 space-y-1.5 text-xs text-slate-400">
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
               <li>• Pastures &amp; hay fields</li>
               <li>• Road frontages &amp; ditches</li>
               <li>• Encroached driveways</li>
@@ -514,16 +512,16 @@
 
           <!-- Stump grinding -->
           <article
-            class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+            class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
           >
-            <h3 class="text-sm font-semibold text-slate-50">
+            <h3 class="text-sm font-semibold text-slate-900">
               Stump Grinding &amp; Cleanup
             </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300">
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">
               Remove tripping hazards and mower-wrecking stumps so you can finish grade,
               seed, or landscape without obstacles.
             </p>
-            <ul class="mt-3 space-y-1.5 text-xs text-slate-400">
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
               <li>• Individual stumps or full lots</li>
               <li>• Post-storm clean-up</li>
               <li>• Root flare reduction</li>
@@ -532,16 +530,16 @@
 
           <!-- Trails -->
           <article
-            class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+            class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
           >
-            <h3 class="text-sm font-semibold text-slate-50">
+            <h3 class="text-sm font-semibold text-slate-900">
               Trails, Access Roads &amp; Fence Rows
             </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300">
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">
               Create and maintain UTV trails, walking paths, and access lanes for hunting,
               livestock, and maintenance.
             </p>
-            <ul class="mt-3 space-y-1.5 text-xs text-slate-400">
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
               <li>• Hunting &amp; recreation trails</li>
               <li>• Property perimeter access</li>
               <li>• Utility &amp; service access</li>
@@ -550,16 +548,16 @@
 
           <!-- Commercial / business clients -->
           <article
-            class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+            class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
           >
-            <h3 class="text-sm font-semibold text-slate-50">
+            <h3 class="text-sm font-semibold text-slate-900">
               Commercial &amp; Municipal Work
             </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300">
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">
               Partner with us for repeat work on large tracts, right-of-ways, and
               maintenance contracts for HOAs, utility easements, and more.
             </p>
-            <ul class="mt-3 space-y-1.5 text-xs text-slate-400">
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-500">
               <li>• Developers &amp; builders</li>
               <li>• HOAs &amp; property managers</li>
               <li>• Municipal &amp; utility partners</li>
@@ -572,36 +570,36 @@
     <!-- Equipment / Our Machines -->
     <section
       id="equipment"
-      class="border-b border-slate-800 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900"
+      class="border-b border-slate-200 bg-white"
     >
       <div class="mx-auto section-max px-4 py-16">
         <div class="grid gap-10 md:grid-cols-[1.1fr,1fr] md:items-center">
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               Heavy equipment, dialed in for brush control.
             </h2>
-            <p class="mt-3 text-sm text-slate-300">
+            <p class="mt-3 text-sm text-slate-600">
               We invest in machines that are built for forestry work—high-flow hydraulics,
               purpose-built mulching heads, and attachments that let us size the job to
               your property, not the other way around.
             </p>
 
-            <div class="mt-6 grid gap-4 text-sm text-slate-200 sm:grid-cols-2">
-              <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
-                <p class="text-xs font-semibold text-emerald-300">
+            <div class="mt-6 grid gap-4 text-sm text-slate-800 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+                <p class="text-xs font-semibold text-emerald-800">
                   Dedicated mulching setups
                 </p>
-                <ul class="mt-2 space-y-1.5 text-xs text-slate-300">
+                <ul class="mt-2 space-y-1.5 text-xs text-slate-600">
                   <li>• High-horsepower skid steers with forestry packages</li>
                   <li>• Closed cabs, guarding &amp; fire suppression</li>
                   <li>• High-flow rotary drum mulching heads</li>
                 </ul>
               </div>
-              <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
-                <p class="text-xs font-semibold text-emerald-300">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+                <p class="text-xs font-semibold text-emerald-800">
                   Right tool for each job
                 </p>
-                <ul class="mt-2 space-y-1.5 text-xs text-slate-300">
+                <ul class="mt-2 space-y-1.5 text-xs text-slate-600">
                   <li>• Grapple &amp; root rake attachments</li>
                   <li>• Stump grinder &amp; brush cutters</li>
                   <li>• Compact options for tight residential access</li>
@@ -609,20 +607,20 @@
               </div>
             </div>
 
-            <p class="mt-4 text-xs text-slate-400">
+            <p class="mt-4 text-xs text-slate-500">
               Photos and equipment list are examples—ask about our current machines and
               capabilities for your specific project.
             </p>
           </div>
 
           <div
-            class="rounded-3xl border border-emerald-500/20 bg-slate-900/70 p-4 shadow-xl shadow-emerald-500/15"
+            class="rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-soft"
           >
             <div
               class="aspect-video w-full overflow-hidden rounded-2xl bg-[url('https://images.pexels.com/photos/1000065/pexels-photo-1000065.jpeg?auto=compress&cs=tinysrgb&w=1200')] bg-cover bg-center"
             ></div>
-            <div class="mt-4 text-xs text-slate-300">
-              <p class="font-semibold text-slate-50">
+            <div class="mt-4 text-xs text-slate-700">
+              <p class="font-semibold text-slate-900">
                 Built for Missouri woods &amp; terrain.
               </p>
               <p class="mt-1">
@@ -635,68 +633,51 @@
       </div>
     </section>
 
-    <!-- Gallery / Recent Work -->
-    <section id="gallery" class="border-b border-slate-800 bg-slate-950/90">
+    <!-- Recent Work with Facebook feed -->
+    <section id="gallery" class="border-b border-slate-200 bg-slate-50">
       <div class="mx-auto section-max px-4 py-16">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
-              Recent work &amp; before/after results.
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+              Recent work &amp; projects.
             </h2>
-            <p class="mt-3 max-w-2xl text-sm text-slate-300">
-              Swap these images with your own projects—driveways opened up, fields
-              reclaimed, and home sites cleared.
+            <p class="mt-3 max-w-2xl text-sm text-slate-600">
+              See real before-and-after results, jobsite videos, and current projects
+              directly from our Facebook page—updated automatically as we post.
             </p>
           </div>
-          <span class="text-xs text-slate-400">
-            Have photos you want featured? We’ll plug them in here.
-          </span>
+          <a
+            href="https://www.facebook.com/FORESTRYMULCHINGSTL/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-semibold text-emerald-700 hover:text-emerald-600"
+          >
+            View full feed on Facebook →
+          </a>
         </div>
 
-        <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <!-- Each of these image URLs can be replaced with your actual project photos -->
-          <figure
-            class="group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70"
-          >
-            <img
-              src="https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Mulched clearing in wooded area"
-              class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-            />
-            <figcaption
-              class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 to-transparent px-3 pb-3 pt-10 text-xs text-slate-100"
-            >
-              Field edge reclaimed and mulched to the tree line.
-            </figcaption>
-          </figure>
-          <figure
-            class="group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70"
-          >
-            <img
-              src="https://images.pexels.com/photos/1000059/pexels-photo-1000059.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Forestry mulching equipment at work"
-              class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-            />
-            <figcaption
-              class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 to-transparent px-3 pb-3 pt-10 text-xs text-slate-100"
-            >
-              Homesite pad cleared and ready for grading.
-            </figcaption>
-          </figure>
-          <figure
-            class="group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70"
-          >
-            <img
-              src="https://images.pexels.com/photos/1000061/pexels-photo-1000061.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Trail cut through woods"
-              class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-            />
-            <figcaption
-              class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 to-transparent px-3 pb-3 pt-10 text-xs text-slate-100"
-            >
-              UTV &amp; walking access trail through timber.
-            </figcaption>
-          </figure>
+        <!-- Facebook Page Plugin -->
+        <div class="mt-8 flex justify-center">
+          <div class="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-3 shadow-soft">
+            <div class="fb-page"
+              data-href="https://www.facebook.com/FORESTRYMULCHINGSTL/"
+              data-tabs="timeline"
+              data-width="800"
+              data-height="800"
+              data-small-header="true"
+              data-adapt-container-width="true"
+              data-hide-cover="false"
+              data-show-facepile="false">
+              <blockquote
+                cite="https://www.facebook.com/FORESTRYMULCHINGSTL/"
+                class="fb-xfbml-parse-ignore"
+              >
+                <a href="https://www.facebook.com/FORESTRYMULCHINGSTL/">
+                  Forestry Mulching STL
+                </a>
+              </blockquote>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -704,37 +685,37 @@
     <!-- Financing -->
     <section
       id="financing"
-      class="border-b border-slate-800 bg-gradient-to-r from-emerald-500/10 via-slate-950 to-emerald-500/10"
+      class="border-b border-slate-200 bg-white"
     >
       <div class="mx-auto section-max px-4 py-16">
         <div class="grid gap-8 md:grid-cols-[1.1fr,1fr] md:items-center">
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               Ask about project financing &amp; phased work.
             </h2>
-            <p class="mt-3 text-sm text-slate-200">
+            <p class="mt-3 text-sm text-slate-600">
               Big projects don’t always have to happen all at once. We can break work into
               phases—like priority access, then full clearing—and help you match the job to
               your budget and timeline.
             </p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-200">
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
               <li class="flex items-start gap-2">
                 <span
-                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] text-emerald-300"
+                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>Phased projects for larger tracts or multi-year plans.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span
-                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] text-emerald-300"
+                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>Can prioritize essentials—access, fence lines, homesites.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span
-                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] text-emerald-300"
+                  class="mt-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-[10px] text-emerald-700"
                   >✓</span
                 >
                 <span>We’ll walk your property and map options with you.</span>
@@ -743,21 +724,21 @@
           </div>
 
           <div
-            class="rounded-2xl border border-emerald-500/30 bg-slate-950/70 p-5 text-sm text-slate-100"
+            class="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-5 text-sm text-emerald-900 shadow-sm"
           >
-            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-800">
               Quick estimate
             </p>
-            <p class="mt-2 text-xs text-slate-300">
-              When you reach out, have a rough idea of:
+            <p class="mt-2 text-xs text-emerald-900/90">
+              When you reach out, it helps if you can share:
             </p>
-            <ul class="mt-2 space-y-1.5 text-xs text-slate-300">
+            <ul class="mt-2 space-y-1.5 text-xs text-emerald-900/90">
               <li>• Approximate acreage or dimensions</li>
               <li>• How thick the brush/timber is</li>
               <li>• Access for equipment (gates, steep slopes, etc.)</li>
               <li>• Your ideal timeline</li>
             </ul>
-            <p class="mt-3 text-xs text-slate-400">
+            <p class="mt-3 text-xs text-emerald-900/80">
               We’ll give you a ballpark range and, when needed, schedule an on-site visit
               before the final quote.
             </p>
@@ -769,31 +750,31 @@
     <!-- Service Area + Map -->
     <section
       id="service-area"
-      class="border-b border-slate-800 bg-slate-950/95"
+      class="border-b border-slate-200 bg-slate-50"
     >
       <div class="mx-auto section-max px-4 py-16">
         <div class="grid gap-8 md:grid-cols-[1.1fr,1fr] md:items-center">
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               Serving Missouri &amp; Southern Illinois.
             </h2>
-            <p class="mt-3 text-sm text-slate-300">
+            <p class="mt-3 text-sm text-slate-600">
               Based out of Defiance, MO, we work across the greater St. Louis region and
               beyond—rural acreage, farms, subdivisions, and recreational ground.
             </p>
-            <ul class="mt-4 space-y-1.5 text-sm text-slate-300">
+            <ul class="mt-4 space-y-1.5 text-sm text-slate-700">
               <li>• St. Charles, Warren, Franklin &amp; surrounding counties</li>
               <li>• Southern Illinois projects by request</li>
               <li>• Residential lots, farms, and commercial tracts</li>
             </ul>
-            <p class="mt-3 text-xs text-slate-400">
+            <p class="mt-3 text-xs text-slate-500">
               Not sure if you’re in range? Send us your address in the quote form—we’ll
               confirm quickly.
             </p>
           </div>
 
           <div
-            class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/80"
+            class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft"
           >
             <iframe
               title="Midwest Forestry Mulching & Land Clearing - Map"
@@ -808,52 +789,52 @@
     </section>
 
     <!-- Testimonials & FAQ -->
-    <section class="border-b border-slate-800 bg-slate-950">
+    <section class="border-b border-slate-200 bg-white">
       <div class="mx-auto section-max px-4 py-16">
         <div class="grid gap-10 md:grid-cols-[1.1fr,1fr] md:items-start">
           <!-- Testimonials -->
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               What customers are saying.
             </h2>
-            <p class="mt-3 text-sm text-slate-300">
+            <p class="mt-3 text-sm text-slate-600">
               Real feedback from property owners who’ve had their land transformed.
             </p>
 
             <div class="mt-6 space-y-4">
               <article
-                class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 text-sm text-slate-200"
+                class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-800 shadow-sm"
               >
                 <div class="flex items-center justify-between gap-3">
-                  <p class="font-semibold text-slate-50">
+                  <p class="font-semibold text-slate-900">
                     “Best bang for the buck I’ve ever seen.”
                   </p>
-                  <div class="flex items-center gap-0.5 text-amber-400">
+                  <div class="flex items-center gap-0.5 text-amber-400 text-xs">
                     ★★★★★
                   </div>
                 </div>
-                <p class="mt-2 text-xs text-slate-300">
+                <p class="mt-2 text-xs text-slate-700">
                   They cleared multiple acres of thick brush and saplings around our home
                   and driveway. The crew was on time, professional, and left everything
                   looking better than we imagined.
                 </p>
-                <p class="mt-3 text-xs font-semibold text-slate-400">
+                <p class="mt-3 text-xs font-semibold text-slate-500">
                   – Residential landowner, Defiance, MO
                 </p>
               </article>
 
               <article
-                class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 text-sm text-slate-200"
+                class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-800 shadow-sm"
               >
-                <p class="font-semibold text-slate-50">
+                <p class="font-semibold text-slate-900">
                   “They turned a jungle into pasture in a day.”
                 </p>
-                <p class="mt-2 text-xs text-slate-300">
+                <p class="mt-2 text-xs text-slate-700">
                   Our pasture and treeline were completely overgrown. Midwest Forestry
                   Mulching opened everything up, and we were able to get fences back up
                   and start using the ground again.
                 </p>
-                <p class="mt-3 text-xs font-semibold text-slate-400">
+                <p class="mt-3 text-xs font-semibold text-slate-500">
                   – Farm owner, Eastern Missouri
                 </p>
               </article>
@@ -862,24 +843,24 @@
 
           <!-- FAQ -->
           <div>
-            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
               Common questions
             </h3>
             <div class="mt-4 space-y-3 text-sm" id="faq-list">
               <details
-                class="group rounded-2xl border border-slate-800 bg-slate-900/70 p-4"
+                class="group rounded-2xl border border-slate-200 bg-slate-50 p-4"
                 open
               >
                 <summary
-                  class="flex cursor-pointer items-center justify-between text-sm font-medium text-slate-100"
+                  class="flex cursor-pointer items-center justify-between text-sm font-medium text-slate-900"
                 >
                   <span>How do you price jobs?</span>
                   <span
-                    class="ml-3 text-xs text-slate-400 group-open:rotate-90 transition-transform"
+                    class="ml-3 text-xs text-slate-500 group-open:rotate-90 transition-transform"
                     >▶</span
                   >
                 </summary>
-                <p class="mt-2 text-xs text-slate-300">
+                <p class="mt-2 text-xs text-slate-700">
                   Most projects are quoted based on a site visit, the density of timber &
                   brush, access for equipment, and your timeline. For simple jobs, we can
                   often give a ballpark estimate from photos and aerial maps.
@@ -887,18 +868,18 @@
               </details>
 
               <details
-                class="group rounded-2xl border border-slate-800 bg-slate-900/70 p-4"
+                class="group rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
                 <summary
-                  class="flex cursor-pointer items-center justify-between text-sm font-medium text-slate-100"
+                  class="flex cursor-pointer items-center justify-between text-sm font-medium text-slate-900"
                 >
                   <span>Will mulching damage my good trees or yard?</span>
                   <span
-                    class="ml-3 text-xs text-slate-400 group-open:rotate-90 transition-transform"
+                    class="ml-3 text-xs text-slate-500 group-open:rotate-90 transition-transform"
                     >▶</span
                   >
                 </summary>
-                <p class="mt-2 text-xs text-slate-300">
+                <p class="mt-2 text-xs text-slate-700">
                   Our goal is always to protect the trees and ground you want to keep. We
                   plan access routes ahead of time and use equipment that minimizes
                   disturbance while still getting the work done.
@@ -906,18 +887,18 @@
               </details>
 
               <details
-                class="group rounded-2xl border border-slate-800 bg-slate-900/70 p-4"
+                class="group rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
                 <summary
-                  class="flex cursor-pointer items-center justify-between text-sm font-medium text-slate-100"
+                  class="flex cursor-pointer items-center justify-between text-sm font-medium text-slate-900"
                 >
                   <span>Do I need to be on site while you work?</span>
                   <span
-                    class="ml-3 text-xs text-slate-400 group-open:rotate-90 transition-transform"
+                    class="ml-3 text-xs text-slate-500 group-open:rotate-90 transition-transform"
                     >▶</span
                   >
                 </summary>
-                <p class="mt-2 text-xs text-slate-300">
+                <p class="mt-2 text-xs text-slate-700">
                   It’s helpful for the initial walk-through and for a final look at the
                   end of the job, but many clients are comfortable with us working while
                   they’re away once the scope is clear.
@@ -932,90 +913,90 @@
     <!-- Contact / Quote Form -->
     <section
       id="contact"
-      class="border-b border-slate-800 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900"
+      class="border-b border-slate-200 bg-slate-50"
     >
       <div class="mx-auto section-max px-4 py-16">
         <div class="grid gap-10 md:grid-cols-[1.1fr,1fr] md:items-start">
           <div>
-            <h2 class="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               Ready to talk about your land?
             </h2>
-            <p class="mt-3 text-sm text-slate-300">
+            <p class="mt-3 text-sm text-slate-600">
               Tell us a little about your property and what you’d like to do with it.
               We’ll follow up with a quote or schedule a walk-through.
             </p>
 
             <form
               id="quote-form"
-              class="mt-6 space-y-4 rounded-2xl border border-slate-800 bg-slate-950/80 p-5 text-sm"
+              class="mt-6 space-y-4 rounded-2xl border border-slate-200 bg-white p-5 text-sm shadow-soft"
             >
               <div class="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label class="block text-xs font-semibold text-slate-300"
+                  <label class="block text-xs font-semibold text-slate-700"
                     >Name *</label
                   >
                   <input
                     type="text"
                     name="name"
                     required
-                    class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/30 focus:ring"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-500/30 focus:ring"
                   />
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-slate-300"
+                  <label class="block text-xs font-semibold text-slate-700"
                     >Phone *</label
                   >
                   <input
                     type="tel"
                     name="phone"
                     required
-                    class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/30 focus:ring"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-500/30 focus:ring"
                   />
                 </div>
               </div>
 
               <div class="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label class="block text-xs font-semibold text-slate-300"
+                  <label class="block text-xs font-semibold text-slate-700"
                     >Email</label
                   >
                   <input
                     type="email"
                     name="email"
-                    class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/30 focus:ring"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-500/30 focus:ring"
                   />
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-slate-300"
+                  <label class="block text-xs font-semibold text-slate-700"
                     >Property address / nearest town</label
                   >
                   <input
                     type="text"
                     name="location"
-                    class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/30 focus:ring"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-500/30 focus:ring"
                   />
                 </div>
               </div>
 
               <div class="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label class="block text-xs font-semibold text-slate-300"
+                  <label class="block text-xs font-semibold text-slate-700"
                     >Approx. acreage</label
                   >
                   <input
                     type="text"
                     name="acreage"
-                    class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/30 focus:ring"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-500/30 focus:ring"
                     placeholder="e.g. 2 acres, 5–10 acres"
                   />
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-slate-300"
+                  <label class="block text-xs font-semibold text-slate-700"
                     >Ideal timeline</label
                   >
                   <select
                     name="timeline"
-                    class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/30 focus:ring"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-500/30 focus:ring"
                   >
                     <option value="">Select</option>
                     <option>As soon as possible</option>
@@ -1027,7 +1008,7 @@
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-slate-300">
+                <label class="block text-xs font-semibold text-slate-700">
                   Services you’re interested in
                 </label>
                 <div class="mt-2 grid gap-2 text-xs sm:grid-cols-2">
@@ -1036,7 +1017,7 @@
                       type="checkbox"
                       name="services"
                       value="Forestry mulching"
-                      class="h-3.5 w-3.5 rounded border-slate-700 bg-slate-900 text-emerald-500"
+                      class="h-3.5 w-3.5 rounded border-slate-300 text-emerald-600"
                     />
                     Forestry mulching
                   </label>
@@ -1045,7 +1026,7 @@
                       type="checkbox"
                       name="services"
                       value="Land clearing"
-                      class="h-3.5 w-3.5 rounded border-slate-700 bg-slate-900 text-emerald-500"
+                      class="h-3.5 w-3.5 rounded border-slate-300 text-emerald-600"
                     />
                     Land clearing
                   </label>
@@ -1054,7 +1035,7 @@
                       type="checkbox"
                       name="services"
                       value="Field reclaim / brush control"
-                      class="h-3.5 w-3.5 rounded border-slate-700 bg-slate-900 text-emerald-500"
+                      class="h-3.5 w-3.5 rounded border-slate-300 text-emerald-600"
                     />
                     Field reclaim / brush control
                   </label>
@@ -1063,7 +1044,7 @@
                       type="checkbox"
                       name="services"
                       value="Stump grinding"
-                      class="h-3.5 w-3.5 rounded border-slate-700 bg-slate-900 text-emerald-500"
+                      class="h-3.5 w-3.5 rounded border-slate-300 text-emerald-600"
                     />
                     Stump grinding
                   </label>
@@ -1072,7 +1053,7 @@
                       type="checkbox"
                       name="services"
                       value="Trails / access roads"
-                      class="h-3.5 w-3.5 rounded border-slate-700 bg-slate-900 text-emerald-500"
+                      class="h-3.5 w-3.5 rounded border-slate-300 text-emerald-600"
                     />
                     Trails / access roads
                   </label>
@@ -1081,7 +1062,7 @@
                       type="checkbox"
                       name="services"
                       value="Commercial / business work"
-                      class="h-3.5 w-3.5 rounded border-slate-700 bg-slate-900 text-emerald-500"
+                      class="h-3.5 w-3.5 rounded border-slate-300 text-emerald-600"
                     />
                     Commercial / business work
                   </label>
@@ -1089,13 +1070,13 @@
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-slate-300">
+                <label class="block text-xs font-semibold text-slate-700">
                   Tell us about your project
                 </label>
                 <textarea
                   name="message"
                   rows="4"
-                  class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-emerald-500/30 focus:ring"
+                  class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-500/30 focus:ring"
                   placeholder="What does your property look like now, and what would you like it to become?"
                 ></textarea>
               </div>
@@ -1103,7 +1084,7 @@
               <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
                 <button
                   type="submit"
-                  class="inline-flex items-center justify-center rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-md shadow-emerald-500/30 hover:bg-emerald-400"
+                  class="inline-flex items-center justify-center rounded-full bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white shadow-soft hover:bg-emerald-600"
                 >
                   Send quote request
                 </button>
@@ -1115,7 +1096,7 @@
 
               <p
                 id="form-toast"
-                class="mt-3 hidden rounded-full bg-emerald-500/15 px-3 py-1.5 text-xs text-emerald-200"
+                class="mt-3 hidden rounded-full bg-emerald-50 px-3 py-1.5 text-xs text-emerald-800 border border-emerald-100"
               >
                 Your email draft should now be open. Review it and hit send—thank you!
               </p>
@@ -1124,41 +1105,41 @@
 
           <!-- Contact info block -->
           <div
-            class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 text-sm text-slate-200"
+            class="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-800 shadow-soft"
           >
-            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+            <h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
               Direct contact
             </h3>
             <div class="mt-3 space-y-2 text-sm">
               <p>
-                <span class="text-slate-400">Phone:</span>
+                <span class="text-slate-500">Phone:</span>
                 <a
                   href="tel:13144373203"
-                  class="ml-1 font-semibold text-emerald-300 hover:text-emerald-200"
+                  class="ml-1 font-semibold text-emerald-700 hover:text-emerald-600"
                   >(314) 437-3203</a
                 >
               </p>
               <p class="break-all">
-                <span class="text-slate-400">Email:</span>
+                <span class="text-slate-500">Email:</span>
                 <a
                   href="mailto:forestrystl@gmail.com"
-                  class="ml-1 font-semibold text-emerald-300 hover:text-emerald-200"
+                  class="ml-1 font-semibold text-emerald-700 hover:text-emerald-600"
                   >forestrystl@gmail.com</a
                 >
               </p>
               <p>
-                <span class="text-slate-400">Address:</span>
+                <span class="text-slate-500">Address:</span>
                 <span class="ml-1">325 Highway DD, Defiance, MO 63341</span>
               </p>
               <p>
-                <span class="text-slate-400">Hours:</span>
+                <span class="text-slate-500">Hours:</span>
                 <span class="ml-1">Mon–Fri · 6:30 am–5:00 pm</span>
               </p>
             </div>
 
-            <hr class="my-4 border-slate-800" />
+            <hr class="my-4 border-slate-200" />
 
-            <div class="space-y-2 text-xs text-slate-400">
+            <div class="space-y-2 text-xs text-slate-500">
               <p>
                 For faster quoting, feel free to text photos of your property and a pin
                 drop from your phone.
@@ -1175,8 +1156,8 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-slate-950/95">
-    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+  <footer class="bg-white">
+    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between border-t border-slate-200">
       <p>
         © <span id="year"></span> Midwest Forestry Mulching &amp; Land Clearing · All
         rights reserved.
@@ -1185,7 +1166,7 @@
         <span>Defiance, Missouri</span>
         <a
           href="#top"
-          class="inline-flex items-center gap-1 rounded-full border border-slate-800 px-3 py-1 text-[11px] text-slate-300 hover:border-emerald-500/50 hover:text-emerald-200"
+          class="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1 text-[11px] text-slate-700 hover:border-emerald-500/50 hover:text-emerald-700"
         >
           ↑ Back to top
         </a>
@@ -1277,3 +1258,4 @@
   </script>
 </body>
 </html>
+
